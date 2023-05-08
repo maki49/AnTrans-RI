@@ -10,6 +10,7 @@ class Deduce
 public:
 
     Deduce(std::string label_mul) : label_mul(label_mul) {}
+    Deduce() {};
     ~Deduce() {};
 
     void set_label_mul(std::string l) { this->label_mul = l; }
