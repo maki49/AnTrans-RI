@@ -68,22 +68,21 @@ public:
             }
             else if (Y.size() == 3) // finaly, gemm33
             {
-                // now there must remains 2 labels in contract_label
+                // now there must remains 2 labels in contract_label.
+                // travesrse 2 orders of them.
                 assert(this->contract_label.size() == 2);
-                std::stringstream ss;
-                //travesrse all the  degree of freedom
-                // for (std::string label_mul : {contract_label.front() + contract_label.back(), contract_label.back() + contract_label.front()})
-                // {
-                    auto label_mul = contract_label.front() + contract_label.back();    //tmp
+                for (std::string label_mul : {contract_label.front() + contract_label.back(), contract_label.back() + contract_label.front()})
+                {
+                    std::stringstream ss;
                     deduce.set_label_mul(label_mul);
                     ss << this->run_gemm_33(X, Y);
-                    // if (ss.str() == Opts::failed) continue;   //try the next label_mul
-                // }
-                    if (ss.str() == Opts::failed) break;
-                    else {
+                    if (ss.str() == Opts::failed) continue;   //try another order of label_mul
+                    else
+                    {
                         solution_sequence.push_back(ss.str());
-                        continue;
+                        break;
                     }
+                }
             }
             else throw std::invalid_argument("Invalid tensors_label.");
         }
