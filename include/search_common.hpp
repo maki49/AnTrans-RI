@@ -10,7 +10,8 @@ void Search::set_contract_labels(std::vector<std::string>& label)
 } 
 void Search::set_tensors_labels(std::vector<std::vector<std::string>>& labels)
 {
-    for (auto l : labels) this->tensors_label.push(l);
+    for (auto iter = labels.rbegin(); iter != labels.rend(); ++iter)
+        this->tensors_label.push(*iter);
 }
 void Search::clear_all()
 {
@@ -73,7 +74,7 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
     // remove contracted label from contract_list
     this->contract_label.remove(deduce.get_label_mul());
     X = *opt_now;
-    Y = this->tensors_label.front();
+    Y = this->tensors_label.top();
 
     return ss.str();
 }

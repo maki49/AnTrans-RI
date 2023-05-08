@@ -9,10 +9,10 @@ public:
 
 void Search_Once::run_323_once()
 {
-    std::vector<std::string> X = this->tensors_label.front();
+    std::vector<std::string> X = this->tensors_label.top();
     this->opt_now = &X;
     this->tensors_label.pop();
-    std::vector<std::string> Y = tensors_label.front();
+    std::vector<std::string> Y = tensors_label.top();
 
     // search a solution once
     this->tmp_ntrans3 = 0;

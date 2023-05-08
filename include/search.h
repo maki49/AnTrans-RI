@@ -1,7 +1,7 @@
 #pragma once
 #include "deduce.hpp"
 #include "tools.hpp"
-#include <queue>
+#include <stack>
 #include <tuple>
 #include <list>
 #include <sstream>
@@ -23,7 +23,7 @@ public:
 
 protected:
     std::list<std::string> contract_label;    //empty means success
-    std::queue<std::vector<std::string>> tensors_label;
+    std::stack<std::vector<std::string>> tensors_label;
     std::vector<std::string>* opt_now=nullptr;
 
     //solution 
