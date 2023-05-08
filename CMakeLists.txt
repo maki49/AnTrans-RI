@@ -42,3 +42,8 @@ AddTest(
     TARGET deduce_test
     SOURCES tests/test_deduce.cpp
 )
+
+AddTest(
+    TARGET search_test
+    SOURCES tests/test_search.cpp
+)
