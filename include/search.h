@@ -1,3 +1,4 @@
+#pragma once
 #include "deduce.hpp"
 #include "tools.hpp"
 #include <queue>
@@ -18,7 +19,8 @@ public:
     void set_tensors_labels(std::vector<std::vector<std::string>>& labels);
     void clear_all();
     
-    void run_323();
+    void run_323_once();    // give a posible solution
+    void run_323_optimize();    //give the best solution 
 
 private:
     std::list<std::string> contract_label;    //empty means success
@@ -31,7 +33,6 @@ private:
     std::vector<std::string> solution_sequence;
 
     //opts to traverse
-    std::vector<bool> exchange = { false, true };
     Deduce deduce;
 
     std::string run_gemm_32(std::vector<std::string>& X, std::vector<std::string>& Y, bool ex);

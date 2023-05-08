@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
-#include "../include/search.hpp"
+#include "../include/search_common.hpp"
+#include "../include/search_once.hpp"
 struct Case
 {
     Case(std::vector<std::vector<std::string>> tensors_label,
@@ -22,7 +23,7 @@ struct Case
 class SearchTest : public testing::Test
 {
 protected:
-    std::vector<Case> case_list{
+    std::vector<Case> case_list_once{
         Case(   //a0b0_a1b1
         { {"a0", "a1", "a2"}, {"a0", "b0"}, {"a1", "b1"}, {"b0", "b1", "b2"} },
         { "a0", "b0", "a1", "b1" },
@@ -62,6 +63,7 @@ protected:
         // 2)
         //...add more ...
     };
+    
 
     Search search;
 };
@@ -69,13 +71,13 @@ protected:
 TEST_F(SearchTest, searchtest_once)
 {
     int count = 1;
-    for (auto c : case_list)
+    for (auto c : case_list_once)
     {
         std::cout << "case: " << count << std::endl;
         count++;
         search.set_tensors_labels(c.tensors_label);
         search.set_contract_labels(c.contract_label);
-        search.run_323();
+        search.run_323_once();
         auto [solution_sequence, min_ntrans3] = search.get_solution();
         EXPECT_EQ(solution_sequence, c.ref_solution_sequence);
         EXPECT_EQ(min_ntrans3, c.ref_min_ntrans3);
