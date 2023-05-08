@@ -6,7 +6,7 @@ project(AnTrans-RI
 )
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD 17)
 include (CTest)
 enable_testing()
 find_package(GTest HINTS /usr/local/lib/ ${GTEST_DIR})
