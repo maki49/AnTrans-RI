@@ -29,7 +29,9 @@ TEST_F(DeduceTest, deducetest)
     std::string trans_merge_33 = deduce.how_trans_merge_33(case33[0], case33[1]);
     EXPECT_EQ(trans_merge_33, Opts::t3 + Opts::m12 + Opts::to_right + Opts::t3 + Opts::m12);
 
-    std::vector<std::string> *optmat = &case33[0];
+    std::vector<std::string>* optmat = &case33[0];
+
+    // to do : change this to a subfuntion in Opts: apply_trans_merge_33
     for (const char s : trans_merge_33)
     {
         if (s == Opts::t3[0]) *optmat = Opts::label3_trans(*optmat);

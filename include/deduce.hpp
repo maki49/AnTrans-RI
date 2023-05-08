@@ -2,6 +2,7 @@
 #include<vector>
 #include <assert.h>
 #include <sstream>
+#include "opts.hpp"
 
 class Deduce
 {
@@ -12,6 +13,7 @@ public:
     ~Deduce() {};
 
     void set_label_mul(std::string l) { this->label_mul = l; }
+    const std::string  get_label_mul() { return this->label_mul; }
 
     const std::string trans_in_gemm(const std::vector<std::string>& l2x, const std::vector<std::string>& l2y)
     {

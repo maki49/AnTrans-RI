@@ -1,5 +1,7 @@
+#pragma once
 #include <vector>
 #include <string>
+#include <map>
 #include <assert.h>
 
 namespace Opts
@@ -38,6 +40,35 @@ namespace Opts
             return std::vector<std::string>{l3[0], l3[1] + l3[2]};
         else
             throw std::invalid_argument("invalid pos");
+    }
+
+    const std::vector<std::string> label22_contract(const std::vector<std::string>& l2x, const std::vector<std::string>& l2y, const std::string& tn)
+    {
+        assert(l2x.size() == 2);
+        assert(l2y.size() == 2);
+        if (tn == "NN" && l2x[1] == l2y[0])
+            return std::vector<std::string>{l2x[0], l2y[1]};
+        else if (tn == "TT" && l2x[0] == l2y[1])
+            return std::vector<std::string>{l2x[1], l2y[0]};
+        else if (tn == "NT" && l2x[1] == l2y[1])
+            return std::vector<std::string>{l2x[0], l2y[0]};
+        else if (tn == "TN" && l2x[0] == l2y[0])
+            return std::vector<std::string>{l2x[1], l2y[1]};
+        else
+            throw std::invalid_argument("invalid gemm type");
+    }
+
+    const std::vector<std::string> label2_split(const std::vector<std::string>& l2)
+    {
+        assert(l2.size() == 2);
+        size_t len0 = l2[0].length();
+        size_t len1 = l2[1].length();
+        if (len0 == 2 * len1)
+            return std::vector<std::string>{l2[0].substr(0, len1), l2[0].substr(len1, len1), l2[1]};
+        else if (len1 == 2 * len0)
+            return std::vector<std::string>{l2[0], l2[1].substr(0, len0), l2[1].substr(len0, len0)};
+        else
+            throw std::invalid_argument("invalid label length to split");
     }
 }
 
