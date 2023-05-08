@@ -70,6 +70,19 @@ namespace Opts
         else
             throw std::invalid_argument("invalid label length to split");
     }
+
+    void label33_trans_merge(std::vector<std::string>& l3x, std::vector<std::string>& l3y,
+        std::vector<std::string>* opt_now, const std::string& trans3_merge)
+    {
+        for (const char s : trans3_merge)
+        {
+            if (s == t3[0]) *opt_now = label3_trans(*opt_now);
+            else if (s == m01[0]) *opt_now = label3_merge(*opt_now, m01);
+            else if (s == m12[0]) *opt_now = label3_merge(*opt_now, m12);
+            else if (s == to_right[0]) opt_now = &l3y;
+            std::cout << "s=" <<s<< std::endl;
+        }
+    }
 }
 
     

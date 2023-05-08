@@ -165,22 +165,15 @@ private:
     {
         assert(opt_now == &X);
         std::stringstream ss;
+        
         // 1. trans and merge
         std::string tmp_trans3_merge = deduce.how_trans_merge_33(X, Y);
         if (tmp_trans3_merge == Opts::failed) return Opts::failed;    // cut 1
         // count ntrans
         this->tmp_ntrans3 += tools::count_char(tmp_trans3_merge, Opts::t3[0]);
         if (this->tmp_ntrans3 >= this->min_ntrans3) return Opts::failed;    // cut 2
-
-        // to do : change this to a subfuntion in Opts: apply_trans_merge_33
-        for (const char s : tmp_trans3_merge)
-        {
-            if (s == Opts::t3[0]) *opt_now = Opts::label3_trans(*opt_now);
-            else if (s == Opts::m01[0]) *opt_now = Opts::label3_merge(*opt_now, Opts::m01);
-            else if (s == Opts::m12[0]) *opt_now = Opts::label3_merge(*opt_now, Opts::m12);
-            else if (s == Opts::to_right[0]) opt_now = &Y;
-            std::cout << "s=" <<s<< std::endl;
-        }
+        
+        Opts::label33_trans_merge(X, Y, opt_now, tmp_trans3_merge);
 
         //2. trans_in_gemm, contract
         std::string tmp_gemm = deduce.trans_in_gemm(X, Y);

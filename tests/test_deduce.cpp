@@ -53,15 +53,7 @@ TEST_F(DeduceTest, deducetest)
 
             std::vector<std::string>* optmat = &c.x;
 
-            // to do : change this to a subfuntion in Opts: apply_trans_merge_33
-            for (const char s : trans_merge_33)
-            {
-                if (s == Opts::t3[0]) *optmat = Opts::label3_trans(*optmat);
-                else if (s == Opts::m01[0]) *optmat = Opts::label3_merge(*optmat, Opts::m01);
-                else if (s == Opts::m12[0]) *optmat = Opts::label3_merge(*optmat, Opts::m12);
-                else if (s == Opts::to_right[0]) optmat = &c.y;
-                //std::cout << "s=" <<s<< std::endl;
-            }
+            Opts::label33_trans_merge(c.x, c.y, optmat, trans_merge_33);
             EXPECT_EQ(trans_merge_33 + deduce.trans_in_gemm(c.x, c.y), c.result);
             break;
         }
