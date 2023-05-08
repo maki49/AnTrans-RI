@@ -25,6 +25,14 @@ public:
     {
         for (auto l : labels) this->tensors_label.push(l);
     }
+    void clear_all()
+    {
+        this->contract_label.clear();
+        while (!this->tensors_label.empty()) this->tensors_label.pop();
+        this->solution_sequence.clear();
+        this->min_ntrans3 = INT16_MAX;
+        this->tmp_ntrans3 = 0;
+    }
     void run_323()
     {
         std::vector<std::string> X = this->tensors_label.front();
