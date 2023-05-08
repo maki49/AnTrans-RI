@@ -19,10 +19,9 @@ public:
     void set_tensors_labels(std::vector<std::vector<std::string>>& labels);
     void clear_all();
     
-    void run_323_once();    // give a posible solution
     void run_323_optimize();    //give the best solution 
 
-private:
+protected:
     std::list<std::string> contract_label;    //empty means success
     std::queue<std::vector<std::string>> tensors_label;
     std::vector<std::string>* opt_now=nullptr;

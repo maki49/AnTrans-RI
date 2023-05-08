@@ -1,5 +1,13 @@
 #include "search.h"
-void Search::run_323_once()
+class Search_Once : public Search
+{
+public:
+    Search_Once() {};
+    ~Search_Once() {};
+    void run_323_once();
+};
+
+void Search_Once::run_323_once()
 {
     std::vector<std::string> X = this->tensors_label.front();
     this->opt_now = &X;

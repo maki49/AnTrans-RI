@@ -65,7 +65,7 @@ protected:
     };
     
 
-    Search search;
+    Search_Once search;
 };
 
 TEST_F(SearchTest, searchtest_once)
