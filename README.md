@@ -1,6 +1,6 @@
 # AnTrans-RI
 
-This code is a Tensor-Transpose Anylizer for  [LibRI](https://github.com/deepmodeling/LibRI). 
+This code is a Tensor-Transpose Analyzer for  [LibRI](https://github.com/deepmodeling/LibRI). 
 
 ( also, it represents my Entrance into the underlying algorithm of [LibRI](https://github.com/deepmodeling/LibRI). )
 
