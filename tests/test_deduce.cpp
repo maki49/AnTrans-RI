@@ -32,9 +32,9 @@ TEST_F(DeduceTest, deducetest)
     Deduce deduce;
     for (auto c : case_list)
     {
-        deduce.set_label_mul(tools::find_common(c.x, c.y));
         if (c.y.size() == 2)
         {
+            deduce.set_label_mul(tools::find_common_32(c.x, c.y));
             std::string trans32 = deduce.if_trans_32(c.x, c.y);
             if (trans32 == Opts::t3) c.x = Opts::label3_trans(c.x);
 

@@ -1,12 +1,15 @@
 #include <string>
 #include <vector>
+#include <assert.h>
 #include "../include/opts.hpp"
 namespace tools
 {
-    std::string find_common(const std::vector<std::string>& v1, const std::vector<std::string>& v2)
+    std::string find_common_32(const std::vector<std::string>& l3x, const std::vector<std::string>& l2y)
     {
-        for (auto s1 : v1)
-            for (auto s2 : v2)
+        assert(l3x.size() == 3);
+        assert(l2y.size() == 2);
+        for (auto s1 : l3x)
+            for (auto s2 : l2y)
                 if (s1 == s2) return s1;
         return Opts::failed;
     }

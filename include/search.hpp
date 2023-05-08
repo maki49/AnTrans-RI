@@ -55,7 +55,7 @@ public:
                 // for (bool ex : this->exchange)
                 // {
                     std::stringstream ss;
-                    deduce.set_label_mul(tools::find_common(X, Y));
+                    deduce.set_label_mul(tools::find_common_32(X, Y));
                     ss << this->run_gemm_32(X, Y, false);   //tmp
                     // if (ss.str() == Opts::failed) continue;   //try the next exchange
                 // }
