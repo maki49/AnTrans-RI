@@ -80,7 +80,6 @@ namespace Opts
             else if (s == m01[0]) *opt_now = label3_merge(*opt_now, m01);
             else if (s == m12[0]) *opt_now = label3_merge(*opt_now, m12);
             else if (s == to_right[0]) opt_now = &l3y;
-            std::cout << "s=" <<s<< std::endl;
         }
     }
 }
