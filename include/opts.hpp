@@ -74,6 +74,9 @@ namespace Opts
     void label33_trans_merge(std::vector<std::string>& l3x, std::vector<std::string>& l3y,
         std::vector<std::string>* opt_now, const std::string& trans3_merge)
     {
+        assert(opt_now == &l3x);
+        assert(l3x.size() == 3);
+        assert(l3y.size() == 3);
         for (const char s : trans3_merge)
         {
             if (s == t3[0]) *opt_now = label3_trans(*opt_now);

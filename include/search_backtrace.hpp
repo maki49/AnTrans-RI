@@ -53,6 +53,7 @@ void Search_Backtrace::run_323_backtrace()
             assert(this->tmp_solution.size() == this->ngemm && this->tmp_ntrans3 < this->min_ntrans3);
             this->record_solution();
             this->solution_backspace();
+            break;  //only one order is useful
         }
         return;
     }
