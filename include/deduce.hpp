@@ -93,7 +93,7 @@ public:
             if (label_first == l3y[2]) return Opts::failed;
             rtrans = true;
             if (label_first == l3y[0]) iy = static_cast<size_t>(1);   //acb
-            else if (label_first == l3x[1]) iy = static_cast<size_t>(0);   //bac
+            else if (label_first == l3y[1]) iy = static_cast<size_t>(0);   //bac
             else throw std::invalid_argument("label missmatched");
         }
         return which_merge_33();

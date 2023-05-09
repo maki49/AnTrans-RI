@@ -20,7 +20,8 @@ protected:
     std::vector<Case> case_list{
         Case({"a1", "a2", "b0"}, {"a2", "b1"} , Opts::t3 + Opts::m12 + "TN"),
         Case({"a0", "b1", "b0"}, {"b0", "b1", "b2"},  Opts::m12 + Opts::to_right + Opts::t3 + Opts::m01 + "NN", "b1b0"),
-        Case({"b0", "a1", "b2"}, {"b0", "b1", "b2"}, Opts::t3 + Opts::m12 + Opts::to_right + Opts::t3 + Opts::m12 + "NT", "b0b2")
+        Case({"b0", "a1", "b2"}, {"b0", "b1", "b2"}, Opts::t3 + Opts::m12 + Opts::to_right + Opts::t3 + Opts::m12 + "NT", "b0b2"),
+        Case({"b1", "a0", "b0"}, {"b0", "b1", "b2"}, Opts::t3 + Opts::m12 + Opts::to_right + Opts::t3 + Opts::m01 + "NN", "b1b0")
     };
     // std::vector<std::vector<std::string>> case32 = { {"a1", "a2", "b0"}, {"a2", "b1"} };    //32TN
     // //std::vector<std::vector<std::string>> case33 = { {"b0", "a1", "b2"}, {"b0", "b1", "b2"} };  //32R32NT
@@ -55,7 +56,6 @@ TEST_F(DeduceTest, deducetest)
 
             Opts::label33_trans_merge(c.x, c.y, optmat, trans_merge_33);
             EXPECT_EQ(trans_merge_33 + deduce.trans_in_gemm(c.x, c.y), c.result);
-            break;
         }
     }
 
