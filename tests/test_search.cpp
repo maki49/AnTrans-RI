@@ -57,11 +57,11 @@ protected:
         2)
         //...add more ...
     };
-    std::vector<Case> case_list_optimized{
-        // case_list_once[0],
-        // case_list_once[1],
-        // case_list_once[2],
-        // case_list_once[3],
+    std::vector<Case> case_list_optimized{  //cal_b01
+        case_list_once[0],
+        case_list_once[1],
+        case_list_once[2],
+        case_list_once[3],
         Case(   //5
         { {"a0", "a1", "a2"}, {"a2", "b1"}, {"a1", "b0"}, {"b0", "b1", "b2"} },
         { "a1", "b0", "a2", "b1" },
@@ -72,8 +72,8 @@ protected:
         { {"a0", "a1", "a2"}, {"a2", "b0"}, {"a1", "b1"}, {"b0", "b1", "b2"} },
         { "a1", "b0", "a2", "b1" },
         { "a0", "b2" },
-        { Opts::m01 + "NN", Opts::t3 + Opts::m12 + "TN", Opts::m12 + Opts::to_right + Opts::t3 + Opts::m01 + "NN" },
-        2)
+        { Opts::m01 + "NN", Opts::t3 + Opts::m12 + "TN", Opts::m12 + Opts::to_right  + Opts::m01 + "NN" },
+        1)
     };
 };
 

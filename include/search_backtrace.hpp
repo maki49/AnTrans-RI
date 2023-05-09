@@ -71,7 +71,7 @@ void Search_Backtrace::run_323_backtrace()
         std::cout << std::endl;
         for (auto s : Y) std::cout << s << " ";
         std::cout << std::endl;
-        
+
         std::string label_now = tools::find_common_32(X, Y);
         deduce.set_label_mul(label_now);
         this->stash(X, Y, label_now);
@@ -84,6 +84,7 @@ void Search_Backtrace::run_323_backtrace()
         this->tmp_solution.push_back(s32);
         this->tensors_label.push(X);    //intermediate result
         this->run_323_backtrace();  //recursion
+        if(this->min_ntrans3 == 0) return;  //already have optimized solution
         step_back(exchange);    //here exchange==true means loop end
     }
     
