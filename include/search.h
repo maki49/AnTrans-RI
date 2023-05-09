@@ -29,6 +29,8 @@ protected:
     //solution 
     int min_ntrans3 = INT16_MAX;
     int tmp_ntrans3 = 0;
+    // number of gemm
+    int ngemm = 0;
     std::vector<std::string> solution_sequence;
 
     //opts to traverse

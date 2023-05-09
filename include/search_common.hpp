@@ -10,6 +10,7 @@ void Search::set_contract_labels(std::vector<std::string>& label)
 } 
 void Search::set_tensors_labels(std::vector<std::vector<std::string>>& labels)
 {
+    this->ngemm=labels.size()-1;
     for (auto iter = labels.rbegin(); iter != labels.rend(); ++iter)
         this->tensors_label.push(*iter);
 }
@@ -101,13 +102,7 @@ std::string Search::run_gemm_33(std::vector<std::string>& X, std::vector<std::st
     std::string tmp_gemm = deduce.trans_in_gemm(X, Y);
     if (tmp_gemm == Opts::failed) return Opts::failed;    // cut 3
     ss << tmp_trans3_merge << tmp_gemm;
-    Opts::label22_contract(X, Y, tmp_gemm);
-    this->tensors_label.pop();
-    std::cout << "tensor_label_empty: " << this->tensors_label.empty() << std::endl;
-    //std::cout << "tensros_label_size(after run_gemm_33): " << tensors_label.size() << std::endl;
-
-    //test
-    std::cout << "finally out label: " << X[0] << X[1] << std::endl;
+    //Opts::label22_contract(X, Y, tmp_gemm);
     
     return ss.str();
 }

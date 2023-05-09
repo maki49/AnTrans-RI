@@ -19,7 +19,7 @@ void Search_Once::run_323_once()
     
     // once search 
     
-    while (!tensors_label.empty())
+    while (solution_sequence.size() < this->ngemm)
     {
         std::cout << "tensors_label.size()=" << tensors_label.size() << std::endl;
 
@@ -61,7 +61,5 @@ void Search_Once::run_323_once()
         else throw std::invalid_argument("Invalid tensors_label.");
     }
     //update the solution
-    std::cout << "tensor_label_empty: " << this->tensors_label.empty() << std::endl;
-    assert(this->tensors_label.empty());
     this->min_ntrans3 = tmp_ntrans3;
 }
