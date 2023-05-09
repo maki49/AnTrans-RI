@@ -26,8 +26,8 @@ void Search::clear_all()
 std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::string>& Y, bool ex)
 {
     //test
-    std::cout << "X: " << X[0] << " " << X[1] << " " << X[2] << std::endl;
-    std::cout << "Y: " << Y[0] << " " << Y[1] << std::endl;
+    // std::cout << "X: " << X[0] << " " << X[1] << " " << X[2] << std::endl;
+    // std::cout << "Y: " << Y[0] << " " << Y[1] << std::endl;
     
     std::stringstream ss;
     if (ex)
@@ -73,8 +73,8 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
     Y = this->tensors_label.top();
     // remove contracted label from contract_list
     this->contract_label.remove(deduce.get_label_mul());
-    std::cout << "X after label22gemm: " << X[0] << X[1] <<X[2]<< std::endl;
-    std::cout << "Y after label22gemm: " << Y[0] << Y[1] << std::endl;
+    // std::cout << "X after label22gemm: " << X[0] << X[1] <<X[2]<< std::endl;
+    // std::cout << "Y after label22gemm: " << Y[0] << Y[1] << std::endl;
     return ss.str();
 }
 
@@ -82,8 +82,8 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
 std::string Search::run_gemm_33(std::vector<std::string>& X, std::vector<std::string>& Y)
 {
     //test
-    std::cout << "X: " << X[0] << X[1] << X[2] << std::endl;
-    std::cout << "Y: " << Y[0] << Y[1] << Y[2] << std::endl;
+    // std::cout << "X: " << X[0] << X[1] << X[2] << std::endl;
+    // std::cout << "Y: " << Y[0] << Y[1] << Y[2] << std::endl;
     assert(opt_now == &X);
     std::stringstream ss;
 

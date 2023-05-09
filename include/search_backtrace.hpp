@@ -71,6 +71,7 @@ void Search_Backtrace::run_323_backtrace()
         std::cout << std::endl;
         for (auto s : Y) std::cout << s << " ";
         std::cout << std::endl;
+        if(this->tmp_ntrans3>=this->min_ntrans3) continue;
 
         std::string label_now = tools::find_common_32(X, Y);
         deduce.set_label_mul(label_now);
