@@ -44,39 +44,32 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
         *opt_now = Opts::label3_trans(*opt_now);
         ++tmp_ntrans3;
     }
-    if(tmp_ntrans3 >= this->min_ntrans3) return Opts::failed;    // cut 1
+    if (tmp_ntrans3 >= this->min_ntrans3) return Opts::failed;    // cut 1
     ss << tmp_trans;
-
-        std::cout<<"1. trans3: "<<tmp_trans<<std::endl;
 
     //2. merge 3
     std::string tmp_merge = deduce.which_merge_32(X, Y);
     if (tmp_merge == Opts::failed) return Opts::failed;    // cut 2
     *opt_now = Opts::label3_merge(*opt_now, tmp_merge);
     ss << tmp_merge;
-
-    std::cout<<"2. merge: "<<tmp_merge<<std::endl;
-
     
     //3. trans_in_gemm,  contract and split
     std::string tmp_gemm = ex ? deduce.trans_in_gemm(Y, X) : deduce.trans_in_gemm(X, Y);
     if (tmp_gemm == Opts::failed) return Opts::failed;    // cut 3
     ss << tmp_gemm;
-    
-    //test 
-    std::cout << ss.str() << std::endl;
-    //end test
-    *opt_now = ex ? Opts::label22_contract(Y, X, tmp_gemm) : Opts::label22_contract(X, Y, tmp_gemm);
-    std::cout << "X after label22: " << X[0] << X[1] << std::endl;
-    std::cout << "Y after label22: " << Y[0] << Y[1] << std::endl;
-    *opt_now = Opts::label2_split(*opt_now);
 
+    // if not failed, do the contract and update X and Y 
+    *opt_now = ex ? Opts::label22_contract(Y, X, tmp_gemm) : Opts::label22_contract(X, Y, tmp_gemm);
+
+    *opt_now = Opts::label2_split(*opt_now);
+    //update X and Y
     this->tensors_label.pop();
-    // remove contracted label from contract_list
-    this->contract_label.remove(deduce.get_label_mul());
     X = *opt_now;
     Y = this->tensors_label.top();
-
+    // remove contracted label from contract_list
+    this->contract_label.remove(deduce.get_label_mul());
+    std::cout << "X after label22gemm: " << X[0] << X[1] <<X[2]<< std::endl;
+    std::cout << "Y after label22gemm: " << Y[0] << Y[1] << std::endl;
     return ss.str();
 }
 
