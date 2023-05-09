@@ -44,7 +44,12 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
         *opt_now = Opts::label3_trans(*opt_now);
         ++tmp_ntrans3;
     }
-    if (tmp_ntrans3 >= this->min_ntrans3) return Opts::failed;    // cut 1
+    if (tmp_ntrans3 >= this->min_ntrans3)
+    {
+        --tmp_ntrans3;  //minus back
+        return Opts::failed;    // cut 1
+    }
+
     ss << tmp_trans;
 
     //2. merge 3
@@ -81,14 +86,19 @@ std::string Search::run_gemm_33(std::vector<std::string>& X, std::vector<std::st
     std::cout << "Y: " << Y[0] << Y[1] << Y[2] << std::endl;
     assert(opt_now == &X);
     std::stringstream ss;
-    
+
     // 1. trans and merge
     std::string tmp_trans3_merge = deduce.how_trans_merge_33(X, Y);
     if (tmp_trans3_merge == Opts::failed) return Opts::failed;    // cut 1
     // count ntrans
-    this->tmp_ntrans3 += tools::count_char(tmp_trans3_merge, Opts::t3[0]);
-    if (this->tmp_ntrans3 >= this->min_ntrans3) return Opts::failed;    // cut 2
-    
+    size_t count_t3 = tools::count_char(tmp_trans3_merge, Opts::t3[0]);
+    this->tmp_ntrans3 += count_t3;
+    if (this->tmp_ntrans3 >= this->min_ntrans3)
+    {
+        this->tmp_ntrans3 -= count_t3;  //minus back
+        return Opts::failed;    // cut 2
+    }
+
     Opts::label33_trans_merge(X, Y, opt_now, tmp_trans3_merge);
 
     //2. trans_in_gemm, contract
