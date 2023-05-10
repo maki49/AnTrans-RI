@@ -203,6 +203,7 @@ TEST_F(SearchTest, searchtest_backtrace)
         EXPECT_EQ(solution_sequence, c.ref_solution_sequence);
         EXPECT_EQ(min_ntrans3, c.ref_min_ntrans3);
         print(solution_sequence);
+        std::cout << std::endl;
         search.clear_all();
     }
     count = 1;
@@ -216,7 +217,8 @@ TEST_F(SearchTest, searchtest_backtrace)
         search.run_323_backtrace();
         auto [solution_sequence, min_ntrans3] = search.get_solution();
         print(solution_sequence);
-        std::cout << "min_ntrans3= " << min_ntrans3 << std::endl;
+        std::cout << "min times of tensor3_transpose: " << min_ntrans3 << std::endl;
+        std::cout << std::endl;
         search.clear_all();
     }
 }
