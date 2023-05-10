@@ -21,8 +21,6 @@ void Search_Once::run_323_once()
     
     while (solution_sequence.size() < this->ngemm)
     {
-        std::cout << "tensors_label.size()=" << tensors_label.size() << std::endl;
-
         if (Y.size() == 2)   // for each gemm32
         {
             //travesrse all the  degree of freedom

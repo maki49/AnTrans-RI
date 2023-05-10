@@ -86,7 +86,7 @@ protected:
         0),
         Case(   //1-2
         { {"a0", "a1", "a2"}, {"a0", "b1"}, {"a1", "b2"}, {"b0", "b1", "b2"} },
-        { "a0", "b0", "a1", "b2" },
+        { "a0", "b1", "a1", "b2" },
         { "a2", "b0" },
         { "NN" },   //tmp
         0),
@@ -98,25 +98,25 @@ protected:
         0),
         Case(   //2-2
         { {"a0", "a1", "a2"}, {"a1", "b1"}, {"a0", "b2"}, {"b0", "b1", "b2"} },
-        { "a0", "b2", "a1", "b0" },
+        { "a0", "b2", "a1", "b1" },
         { "a2", "b0" },
         { "NN" },   //tmp
         0),
         Case(   //3-1
-        { {"a0", "a1", "a2"}, {"a1", "b0"}, {"a2", "b2"}, {"b0", "b1", "b2"} },
+        { {"a0", "a1", "a2"}, {"a0", "b0"}, {"a2", "b2"}, {"b0", "b1", "b2"} },
         { "a0", "b0", "a2", "b2" },
         { "a1", "b1" },
         { "NN" },   //tmp
         0),
         Case(   //3-2
-        { {"a0", "a1", "a2"}, {"a1", "b1"}, {"a2", "b2"}, {"b0", "b1", "b2"} },
-        { "a0", "b0", "a2", "b2" },
+        { {"a0", "a1", "a2"}, {"a0", "b1"}, {"a2", "b2"}, {"b0", "b1", "b2"} },
+        { "a0", "b1", "a2", "b2" },
         { "a1", "b0" },
         { "NN" },   //tmp
         0),
         Case(   //4-1
         { {"a0", "a1", "a2"}, {"a2", "b0"}, {"a0", "b2"}, {"b0", "b1", "b2"} },
-        { "a0", "b2", "a2", "b1" },
+        { "a0", "b2", "a2", "b0" },
         { "a1", "b1" },
         { "NN" },   //tmp
         0),
@@ -133,14 +133,20 @@ protected:
         { "NN" },   //tmp
         0),
         Case(   //5-2
+        { {"a0", "a1", "a2"}, {"a1", "b1"}, {"a2", "b2"}, {"b0", "b1", "b2"} },
+        { "a1", "b1", "a2", "b2" },
+        { "a0", "b0" },
+        { "NN" },   //tmp
+        0),
+        Case(   //6-1
         { {"a0", "a1", "a2"}, {"a2", "b0"}, {"a1", "b2"}, {"b0", "b1", "b2"} },
         { "a1", "b2", "a2", "b0" },
         { "a0", "b1" },
         { "NN" },   //tmp
         0),
-        Case(   //5-2
+        Case(   //6-1
         { {"a0", "a1", "a2"}, {"a2", "b1"}, {"a1", "b2"}, {"b0", "b1", "b2"} },
-        { "a1", "b2", "a2", "b0" },
+        { "a1", "b2", "a2", "b1" },
         { "a0", "b0" },
         { "NN" },   //tmp
         0),
@@ -168,11 +174,8 @@ protected:
 TEST_F(SearchTest, searchtest_once)
 {
     Search_Once search;
-    int count = 1;
     for (auto c : case_list_once)
     {
-        std::cout << "case: " << count << std::endl;
-        count++;
         search.set_tensors_labels(c.tensors_label);
         search.set_contract_labels(c.contract_label);
         search.run_323_once();
@@ -190,7 +193,7 @@ TEST_F(SearchTest, searchtest_backtrace)
     int count = 1;
     for (auto c : case_list_optimized_b01)
     {
-        std::cout << "case: " << count << std::endl;
+        std::cout << "case in bx1: " << count << std::endl;
         print(c.tensors_label);
         count++;
         search.set_tensors_labels(c.tensors_label);

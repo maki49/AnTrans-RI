@@ -72,6 +72,7 @@ std::string Search::run_gemm_32(std::vector<std::string>& X, std::vector<std::st
     X = *opt_now;
     Y = this->tensors_label.top();
     // remove contracted label from contract_list
+    // std::cout<<"removing label_mul" << deduce.get_label_mul() << std::endl;
     this->contract_label.remove(deduce.get_label_mul());
     // std::cout << "X after label22gemm: " << X[0] << X[1] <<X[2]<< std::endl;
     // std::cout << "Y after label22gemm: " << Y[0] << Y[1] << std::endl;
